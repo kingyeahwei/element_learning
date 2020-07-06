@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-upload
-      action="http://localhost:3000/api/upload"
+      action="https://jsonplaceholder.typicode.com/posts/"
       list-type="picture-card"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"
@@ -45,12 +45,11 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-    successHander(res, file, fileList) {
-      // this.fileList.push({
-      //   name: file.name,
-      //   url: file.url
-      // });
-      this.fileList = fileList;
+    successHander(res, file) {
+      this.fileList.push({
+        name: file.name,
+        url: file.url
+      });
     }
   }
 };
@@ -60,7 +59,7 @@ export default {
 .el-upload-list__item {
   transition: none !important;
 }
-// .is-uploading {
-//   display: none;
-// }
+.is-uploading {
+  display: none;
+}
 </style>
