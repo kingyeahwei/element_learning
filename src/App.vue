@@ -1,44 +1,43 @@
 <template>
   <div id="app">
     <div>
-      <el-radio v-model="radio1" label="1" border>备选项</el-radio>
-      <el-radio v-model="radio1" label="2" border>备选项</el-radio>
-    </div>
-    <div style="margin-top: 20px">
-      <el-radio v-model="radio2" label="1" border size="medium">备选项</el-radio>
-      <el-radio v-model="radio2" label="2" border size="medium">备选项</el-radio>
-    </div>
-    <div style="margin-top: 20px">
-      <el-radio-group v-model="radio3" size="small">
-        <el-radio label="1" border>备选项</el-radio>
-        <el-radio label="2" border disabled>备选项</el-radio>
-      </el-radio-group>
+      <el-checkbox v-model="checked1" label="备选项1" border ></el-checkbox>
+      <el-checkbox v-model="checked2" label="备选项2" border ></el-checkbox>
     </div>
     <div style="margin-top: 20px;">
-      <el-radio-group v-model="radio4" size="mini" disabled>
-        <el-radio label="1" border>备选项</el-radio>
-        <el-radio label="2" border>备选项</el-radio>
-      </el-radio-group>
+      <el-checkbox v-model="checked3" label="备选项1" border size="medium"></el-checkbox>
+      <el-checkbox v-model="checked4" label="备选项2" border size="medium"></el-checkbox>
+    </div>
+    <div style="margin-top: 20px;">
+      <el-checkbox-group v-model="checkboxGroup1" size="small">
+        <el-checkbox label="备选项1" border></el-checkbox>
+        <el-checkbox label="备选项2" border></el-checkbox>
+      </el-checkbox-group>
+    </div>
+    <div style="margin-top: 20px">
+      <el-checkbox-group v-model="checkboxGroup2" size="mini" disabled>
+        <el-checkbox label="备选项1" border></el-checkbox>
+        <el-checkbox label="备选项2" border></el-checkbox>
+      </el-checkbox-group>
     </div>
   </div>
 </template>
 
 <script>
+const cityOptions = ["上海", "北京", "广州", "深圳"];
 export default {
   name: "app",
   data() {
     return {
-      radio1: "1",
-      radio2: "1",
-      radio3: "1",
-      radio4: "上海",
-    }
+      checked1: true,
+        checked2: false,
+        checked3: false,
+        checked4: true,
+        checkboxGroup1: [],
+        checkboxGroup2: []
+    };
   },
-  methods: {
-    changeFn(val) {
-      console.log(val);
-    }
-  },
+  methods: {}
 };
 </script>
 
