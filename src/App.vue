@@ -1,15 +1,45 @@
 <template>
   <div id="app">
-    <el-link href="http://www.baidu.com" target="_blank" icon="el-icon-edit">默认链接</el-link>
-    <el-link type="primary" icon="el-icon-share">主要链接</el-link>
-    <el-link type="success" :underline="false">成功链接</el-link>
-    <el-link type="warning" :underline="false">警告链接</el-link>
-    <el-link type="danger" :underline="false">危险链接</el-link>
+    <div>
+      <el-radio v-model="radio1" label="1" border>备选项</el-radio>
+      <el-radio v-model="radio1" label="2" border>备选项</el-radio>
+    </div>
+    <div style="margin-top: 20px">
+      <el-radio v-model="radio2" label="1" border size="medium">备选项</el-radio>
+      <el-radio v-model="radio2" label="2" border size="medium">备选项</el-radio>
+    </div>
+    <div style="margin-top: 20px">
+      <el-radio-group v-model="radio3" size="small">
+        <el-radio label="1" border>备选项</el-radio>
+        <el-radio label="2" border disabled>备选项</el-radio>
+      </el-radio-group>
+    </div>
+    <div style="margin-top: 20px;">
+      <el-radio-group v-model="radio4" size="mini" disabled>
+        <el-radio label="1" border>备选项</el-radio>
+        <el-radio label="2" border>备选项</el-radio>
+      </el-radio-group>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {};
+export default {
+  name: "app",
+  data() {
+    return {
+      radio1: "1",
+      radio2: "1",
+      radio3: "1",
+      radio4: "上海",
+    }
+  },
+  methods: {
+    changeFn(val) {
+      console.log(val);
+    }
+  },
+};
 </script>
 
 <style lang="less">
