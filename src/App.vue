@@ -1,44 +1,42 @@
 <template>
   <div id="app">
-    <div>
-      <el-checkbox v-model="checked1" label="备选项1" border ></el-checkbox>
-      <el-checkbox v-model="checked2" label="备选项2" border ></el-checkbox>
-    </div>
-    <div style="margin-top: 20px;">
-      <el-checkbox v-model="checked3" label="备选项1" border size="medium"></el-checkbox>
-      <el-checkbox v-model="checked4" label="备选项2" border size="medium"></el-checkbox>
-    </div>
-    <div style="margin-top: 20px;">
-      <el-checkbox-group v-model="checkboxGroup1" size="small">
-        <el-checkbox label="备选项1" border></el-checkbox>
-        <el-checkbox label="备选项2" border></el-checkbox>
-      </el-checkbox-group>
-    </div>
-    <div style="margin-top: 20px">
-      <el-checkbox-group v-model="checkboxGroup2" size="mini" disabled>
-        <el-checkbox label="备选项1" border></el-checkbox>
-        <el-checkbox label="备选项2" border></el-checkbox>
-      </el-checkbox-group>
+    <div class="demo-input-size">
+      <el-input v-model="input1"
+                placeholder="请输入内容"
+                suffix-icon="el-icon-date"
+      ></el-input>
+      <el-input v-model="input2"
+                placeholder="请输入内容"
+                size="medium"
+                suffix-icon="el-icon-date"
+      ></el-input>
+      <el-input v-model="input3"
+                suffix-icon="el-icon-date"
+                size="small"
+                placeholder="请输入内容">
+      </el-input>
+      <el-input v-model="input4"
+                placeholder="请输入内容"
+                suffix-icon="el-icon-date"
+                size="mini"
+      ></el-input>
     </div>
   </div>
 </template>
 
 <script>
-const cityOptions = ["上海", "北京", "广州", "深圳"];
-export default {
-  name: "app",
-  data() {
-    return {
-      checked1: true,
-        checked2: false,
-        checked3: false,
-        checked4: true,
-        checkboxGroup1: [],
-        checkboxGroup2: []
-    };
-  },
-  methods: {}
-};
+  export default {
+    name: "app",
+    data() {
+      return {
+        input1: "",
+        input2: "",
+        input3: "",
+        input4: "",
+      };
+    },
+    methods: {}
+  };
 </script>
 
 <style lang="less">
