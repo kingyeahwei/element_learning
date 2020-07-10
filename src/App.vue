@@ -30,8 +30,8 @@
     },
     methods: {
       querySearch(queryString, cb) {
-        var restaurants = this.restaurants;
-        var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+        const restaurants = this.restaurants;
+        const results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
         // 调用 callback 返回建议列表的数据
         cb(results);
       },
