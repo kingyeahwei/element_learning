@@ -24,24 +24,25 @@
 </template>
 
 <script>
-export default {
-  name: "app",
-  data() {
-    return {
-      input1: "",
-      input2: "",
-      input3: "",
-      select: ""
-    };
-  },
-  methods: {}
-};
+  export default {
+    name: "app",
+    data() {
+      return {
+        input1: "",
+        input2: "",
+        input3: "",
+        select: ""
+      };
+    },
+    methods: {}
+  };
 </script>
 
 <style lang="less">
-.el-select .el-input {
+  .el-select .el-input {
     width: 130px;
   }
+
   .input-with-select .el-input-group__prepend {
     background-color: #fff;
   }
