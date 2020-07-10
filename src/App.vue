@@ -37,6 +37,7 @@
       },
       createFilter(queryString) {
         return (restaurant) => {
+          console.log(restaurant);
           return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
         };
       },
