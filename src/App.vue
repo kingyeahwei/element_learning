@@ -1,21 +1,14 @@
 <template>
   <div id="app">
-    <el-select v-model="value1" multiple placeholder="请选择">
+    <el-select v-model="value" placeholder="请选择">
       <el-option
-        v-for="item in options"
+        v-for="item in cities"
         :key="item.value"
         :label="item.label"
-        :value="item.value"
-      ></el-option>
-    </el-select>
-
-    <el-select v-model="value2" multiple collapse-tags style="margin-left: 20px" placeholder="请选择">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      ></el-option>
+        :value="item.value">
+        <span style="float: left;">{{item.label}}</span>
+        <span style="float: right; color: #8492a6; font-size: 13px">{{item.value}}</span>
+      </el-option>
     </el-select>
   </div>
 </template>
@@ -25,26 +18,28 @@
     name: "app",
     data: function () {
       return {
-        options: [
+        cities: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Beijing',
+            label: '北京'
           }, {
-            value: '选项2',
-            label: '双皮奶'
+            value: 'Shanghai',
+            label: '上海'
           }, {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Nanjing',
+            label: '南京'
           }, {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Chengdu',
+            label: '成都'
           }, {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Shenzhen',
+            label: '深圳'
+          }, {
+            value: 'Guangzhou',
+            label: '广州'
           }
         ],
-        value1: "",
-        value2: ""
+        value: "",
       };
     },
     methods: {
