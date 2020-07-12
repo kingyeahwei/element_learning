@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <el-input-number v-model="num1"></el-input-number>
-    <el-input-number v-model="num2" size="medium"></el-input-number>
-    <el-input-number v-model="num3" size="small"></el-input-number>
-    <el-input-number v-model="num4" size="mini"></el-input-number>
+    <el-input-number
+      v-model="num"
+      controls-position="right"
+      @change="handleChange"
+      :min="1"
+      :max="10"
+    ></el-input-number>
   </div>
 </template>
 
@@ -12,13 +15,13 @@
     name: "app",
     data: function () {
       return {
-        num1: 1,
-        num2: 2,
-        num3: 3,
-        num4: 4
+        num: 1,
       };
     },
     methods: {
+      handleChange(value) {
+        console.log(value)
+      }
     }
   };
 </script>
