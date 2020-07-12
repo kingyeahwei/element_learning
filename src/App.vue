@@ -2,8 +2,9 @@
   <div id="app">
     <el-input-number
       v-model="num"
-      :step="2"
-      :step-strictly="true"
+      :precision="2"
+      :step="0.1"
+      :max="10"
     ></el-input-number>
   </div>
 </template>
@@ -13,7 +14,7 @@
     name: "app",
     data: function () {
       return {
-        num: 5
+        num: 1
       };
     },
     methods: {
