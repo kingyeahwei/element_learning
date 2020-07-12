@@ -2,14 +2,14 @@
   <div id="app">
     <el-select
       v-model="value"
+      disabled
       placeholder="请选择">
       <el-option
         v-for="item in options"
         :key="item.value"
         :label="item.label"
         :value="item.value"
-        :disabled="item.disabled">
-      </el-option>
+      ></el-option>
     </el-select>
   </div>
 </template>
@@ -25,8 +25,7 @@
             label: '黄金糕'
           }, {
             value: '选项2',
-            label: '双皮奶',
-            disabled: true
+            label: '双皮奶'
           }, {
             value: '选项3',
             label: '蚵仔煎'
