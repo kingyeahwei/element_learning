@@ -8,7 +8,8 @@
         :key="item.value"
         :label="item.label"
         :value="item.value"
-      ></el-option>
+        :disabled="item.disabled">
+      </el-option>
     </el-select>
   </div>
 </template>
@@ -24,7 +25,8 @@
             label: '黄金糕'
           }, {
             value: '选项2',
-            label: '双皮奶'
+            label: '双皮奶',
+            disabled: true
           }, {
             value: '选项3',
             label: '蚵仔煎'
