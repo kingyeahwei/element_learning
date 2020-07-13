@@ -1,17 +1,9 @@
 <template>
   <div id="app">
-    <div class="block">
-      <span>有默认值</span>
-      <el-color-picker
-        v-model="color1"
-      ></el-color-picker>
-    </div>
-    <div class="block">
-      <span>无默认值</span>
-      <el-color-picker
-        v-model="color2"
-      ></el-color-picker>
-    </div>
+    <el-color-picker
+      v-model="color"
+      show-alpha
+    ></el-color-picker>
   </div>
 </template>
 
@@ -21,8 +13,7 @@
     name: "app",
     data() {
       return {
-        color1: "#409eff",
-        color2: null
+        color: "rgba(19, 206, 102, 0.8)",
       };
     },
     methods: {}
