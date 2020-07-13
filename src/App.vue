@@ -3,7 +3,9 @@
     <div class="block">
       <el-slider
         v-model="value"
-        show-input
+        range
+        show-stops
+        :max="10"
       ></el-slider>
     </div>
   </div>
@@ -15,7 +17,7 @@
     name: "app",
     data() {
       return {
-        value: 0,
+        value: [4, 8]
       }
     },
     methods: {
