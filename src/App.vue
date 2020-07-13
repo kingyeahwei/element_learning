@@ -1,26 +1,35 @@
 <template>
   <div id="app">
     <div class="block">
-      <span>默认</span><br>
+      <span>默认为Date对象</span>
+      <div>值: {{value1}}</div>
       <el-date-picker
         v-model="value1"
-        type="monthrange"
-        range-separator="至"
-        start-placeholder="开始月份"
-        end-placeholder="结束月份"
+        type="date"
+        placeholder="选址日期"
+        format="yyyy 年 MM 月 dd 日"
       ></el-date-picker>
     </div>
     <div class="block">
-      <span>带快捷选项</span><br>
+      <span>使用value-format</span>
+      <div>值: {{value2}}</div>
       <el-date-picker
         v-model="value2"
-        type="monthrange"
-        align="right"
-        unlink-panels
-        range-separator="至"
-        start-placeholder="开始月份"
-        end-placeholder="结束月份"
-        :picker-options="pickerOptions"
+        type="date"
+        placeholder="选择日期"
+        format="yyyy 年 MM 月 dd 日"
+        value-format="yyyy-MM-dd"
+      ></el-date-picker>
+    </div>
+    <div class="block">
+      <span>时间戳</span>
+      <div>值: {{value3}}</div>
+      <el-date-picker
+        v-model="value3"
+        type="date"
+        placeholder="选择日期"
+        format="yyyy 年 MM 月 dd 日"
+        value-format="timestamp"
       ></el-date-picker>
     </div>
   </div>
@@ -32,35 +41,9 @@
     name: "app",
     data() {
       return {
-        pickerOptions: {
-          shortcuts: [
-            {
-              text: "本月",
-              onClick(picker) {
-                picker.$emit("pick", [new Date(), new Date()])
-              }
-            },
-            {
-              text: "今年至今",
-              onClick(picker) {
-                const end = new Date();
-                const start = new Date(new Date().getFullYear(), 0);
-                picker.$emit("pick", [start, end])
-              }
-            },
-            {
-              text: "最近六个月",
-              onClick(picker) {
-                const end = new Date();
-                const start = new Date();
-                start.setMonth(start.getMonth() - 6);
-                picker.$emit("pick", [start, end]);
-              }
-            }
-          ]
-        },
-        value1: '',
-        value2: ''
+        value1: "",
+        value2: "",
+        value3: ""
       };
     },
     methods: {}
