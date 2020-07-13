@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-cascader :options="options" clearable></el-cascader>
+    <el-cascader :options="options" :show-all-levels="false"></el-cascader>
   </div>
 </template>
 
