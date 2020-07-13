@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <el-rate
-      v-model="value"
-      :icon-classes="iconClasses"
-      void-icon-class="icon-rate-face-off"
-      :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
-    </el-rate>
+    <div class="block">
+      <span>有默认值</span>
+      <el-color-picker
+        v-model="color1"
+      ></el-color-picker>
+    </div>
+    <div class="block">
+      <span>无默认值</span>
+      <el-color-picker
+        v-model="color2"
+      ></el-color-picker>
+    </div>
   </div>
 </template>
 
@@ -15,8 +21,8 @@
     name: "app",
     data() {
       return {
-        value: null,
-        iconClasses: ['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3']
+        color1: "#409eff",
+        color2: null
       };
     },
     methods: {}
