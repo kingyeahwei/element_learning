@@ -3,8 +3,8 @@
     <div class="block">
       <el-slider
         v-model="value"
-        vertical
-        height="200px"
+        range
+        :marks="marks"
       ></el-slider>
     </div>
   </div>
@@ -16,7 +16,18 @@
     name: "app",
     data() {
       return {
-        value: 0
+        value: [30, 60],
+        marks: {
+          0: '0°C',
+          8: '8°C',
+          37: '37°C',
+          50: {
+            style: {
+              color: '#1989FA'
+            },
+            label: this.$createElement('strong', '50%')
+          }
+        }
       }
     },
     methods: {
