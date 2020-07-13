@@ -1,13 +1,30 @@
 <template>
   <div id="app">
     <div class="block">
-      <p>组件值: {{value}}</p>
+      <span>默认</span>
       <el-date-picker
-        v-model="value"
-        type="daterange"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        :default-time="['00:00:00', '23:59:59']"
+        v-model="value1"
+        type="datetime"
+        placeholder="选择日期时间"
+      ></el-date-picker>
+    </div>
+    <div class="block">
+      <span>带快捷选项</span>
+      <el-date-picker
+        v-model="value2"
+        type="datetime"
+        placeholder="选择日期时间"
+        align="right"
+        :picker-options="pickerOptions"
+      ></el-date-picker>
+    </div>
+    <div class="block">
+      <span>设置默认时间</span>
+      <el-date-picker
+        v-model="value3"
+        type="datetime"
+        placeholder="选择日期时间"
+        default-time="12:00:00"
       ></el-date-picker>
     </div>
   </div>
@@ -19,7 +36,35 @@
     name: "app",
     data() {
       return {
-        value: ""
+        pickerOptions: {
+          shortcuts: [
+            {
+              text: "今天",
+              onClick(picker) {
+                picker.$emit("pick", new Date())
+              }
+            },
+            {
+              text: "昨天",
+              onClick(picker) {
+                const date = new Date();
+                date.setTime(date.getTime() - 3600 * 1000 * 24)
+                picker.$emit("pick", date)
+              }
+            },
+            {
+              text: "一周前",
+              onClick(picker) {
+                const date = new Date();
+                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+                picker.$emit("pick", date)
+              }
+            }
+          ]
+        },
+        value1: "",
+        value2: "",
+        value3: "",
       };
     },
     methods: {}
