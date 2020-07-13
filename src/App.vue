@@ -1,25 +1,12 @@
 <template>
   <div id="app">
     <div class="block">
-      <span>起始日期时刻为 12:00:00</span>
-      <el-date-picker
-        v-model="value1"
-        type="datetimerange"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        :default-time="['12:00:00']"
-      ></el-date-picker>
+      <span>默认不区分颜色</span>
+      <el-rate v-model="value1"></el-rate>
     </div>
     <div class="block">
-      <span>起始日期时刻为 12:00:00 结束日期时刻为 08:00:00</span>
-      <el-date-picker
-        v-model="value2"
-        type="datetimerange"
-        align="right"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        :default-time="['12:00:00', '08:00:00']"
-      ></el-date-picker>
+      <span>区分颜色</span>
+      <el-rate v-model="value2" :colors="colors"></el-rate>
     </div>
   </div>
 </template>
@@ -30,8 +17,9 @@
     name: "app",
     data() {
       return {
-        value1: "",
-        value2: ""
+        value1: null,
+        value2: null,
+        colors: ["#99a9bf", "#f7ba2a", "#ff9900"]
       };
     },
     methods: {}
