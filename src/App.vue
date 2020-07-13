@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <el-time-picker
-      v-model="value1"
-      picker-options="{
-        selectableRange: '18:30:00 - 20:30:00'
-      }"
-      placeholder="任意时间点"
-    ></el-time-picker>
-    <el-time-picker
-      arrow-control
-      v-model="value2"
+    <el-time-select
+      placeholder="起始时间"
+      v-model="startTime"
       :picker-options="{
-        selectableRange: '18:30:00 - 20:30:00'
+        start: '08:30',
+        step: '00:15',
+        end: '18:30',
+        maxTime: endTime
       }"
-      placeholder="任意时间点"
-    ></el-time-picker>
+    ></el-time-select>
+    <el-time-select
+      placeholder="结束时间"
+      v-model="endTime"
+      :picker-options="{
+        start: '08:30',
+        step: '00:15',
+        end: '18:30',
+        minTime: startTime
+      }"
+    ></el-time-select>
   </div>
 </template>
 
@@ -24,8 +29,8 @@
     name: "app",
     data() {
       return {
-        value1: new Date(2016, 9, 10, 18, 40),
-        value2: new Date(2016, 9, 10, 18, 40),
+        startTime: "",
+        endTime: ""
       }
     },
     methods: {
