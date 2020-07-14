@@ -1,12 +1,41 @@
 <template>
   <div id="app">
-    <el-transfer
-      filterable
-      :filter-method="filterMethod"
-      filter-placeholder="请输入城市拼音"
-      v-model="value"
-      :data="data"
-    ></el-transfer>
+    <p style="text-align: center; margin: 0 0 20px;">使用render-content自定义数据项</p>
+    <div style="text-align: center;">
+      <el-transfer
+        style="text-align: left; display: inline-block;"
+        v-model="value"
+        filterable
+        :left-default-checked="[2, 3]"
+        :right-default-checked="[1]"
+        :render-content="renderFunc"
+        :titles="['到左边', '到右边']"
+        :button-texts="['向左', '向右']"
+        :format="{ noChecked: '${total}', hasChecked: '${checked}/${total}' }"
+        @change="handleChange"
+        :data="data">
+        <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
+        <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
+      ></el-transfer>
+    </div>
+    <p style="text-align: center; margin: 50px 0 20px;">使用scoped-slot自定义数据项</p>
+    <div style="text-align: center;">
+      <el-transfer
+        style="text-align: left; display: inline-block;"
+        v-model="value4"
+        filterable
+        :left-default-checked="[2, 3]"
+        :right-default-checked="[1]"
+        :titles="['Source', 'Target']"
+        :button-texts="['到左边', '到右边']"
+        :format="{ noChecked: '${total}', hasChecked: '${checked}/${total}' }"
+        @change="handleChange"
+        :data="data">
+        <span slot-scope="{option}">{{option.key}}++{{option.label}}</span>
+        <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
+        <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
+      </el-transfer>
+    </div>
   </div>
 </template>
 
@@ -17,31 +46,37 @@
     data() {
       const generateData = (_) => {
         const data = [];
-        const cities = ["上海", "北京", "广州", "深圳", "南京", "西安", "成都"];
-        const pinyin = ["shanghai", "beijing", 'guangzhou', "shenzhen", 'nanjing', 'xian', 'chengdu'];
-        cities.forEach((item, index) => {
+        for (let i = 1; i <= 15; i++) {
           data.push({
-            label: item,
-            key: index,
-            pinyin: pinyin[index]
-          });
-        });
+            key: i,
+            label: `备选项${i}`,
+            disabled: i % 4 == 0
+          })
+        }
         return data;
-      };
+      }
       return {
         data: generateData(),
-        value: [],
+        value: [1],
+        value4: [1],
+        renderFunc(h, option) {
+          console.log(h)
+          console.log(option)
+          return <span>{option.key} ---- {option.label}</span>;
+        }
       }
     },
     methods: {
-      filterMethod(query, item) {
-        console.log(query)
-        console.log(item)
-        return item.pinyin.indexOf(query) > -1;
+      handleChange(value, direction, movedkeys) {
+        console.log(value, direction, movedkeys)
       }
     }
   };
 </script>
 
 <style lang="less">
+  .transfer-footer {
+    margin-left: 20px;
+    padding: 6px 5px;
+  }
 </style>
