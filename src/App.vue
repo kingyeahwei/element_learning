@@ -1,17 +1,20 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div id="app">
-    <el-form :model="formInline" class="demo-form-inline" :inline="true">
-      <el-form-item label="审批人">
-        <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+    <el-radio-group v-model="labelPosition" size="small">
+      <el-radio-button label="left">左对齐</el-radio-button>
+      <el-radio-button label="right">右对齐</el-radio-button>
+      <el-radio-button label="top">顶部对齐</el-radio-button>
+    </el-radio-group>
+    <div style="margin: 20px"></div>
+    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+      <el-form-item label="名称">
+        <el-input v-model="formLabelAlign.name"></el-input>
       </el-form-item>
       <el-form-item label="活动区域">
-        <el-select v-model="formInline.region" placeholder="活动区域">
-          <el-option label="区域1" value="shanghai"></el-option>
-          <el-option label="区域2" value="beijing"></el-option>
-        </el-select>
+        <el-input v-model="formLabelAlign.region"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">查询</el-button>
+      <el-form-item label="活动形式">
+        <el-input v-model="formLabelAlign.type"></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -23,16 +26,15 @@
     name: "app",
     data() {
       return {
-        formInline: {
-          user: "",
-          region: ""
+        labelPosition: "right",
+        formLabelAlign: {
+          name: "",
+          region: "",
+          type: ""
         }
       }
     },
     methods: {
-      onSubmit() {
-        console.log("submit!!")
-      }
     }
   };
 </script>
