@@ -2,7 +2,7 @@
   <div id="app">
     <el-table
       :data="tableData"
-      border
+      :row-class-name="tableRowClassName"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -49,9 +49,24 @@
                 ]
             }
         },
-        methods: {}
+        methods: {
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex == 1) {
+                    return 'warning-row'
+                } else if (rowIndex == 3) {
+                    return 'success-row'
+                }
+                return '';
+            }
+        }
     };
 </script>
 
 <style lang="less">
+  .el-table .warning-row {
+    background: oldlace;
+  }
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 </style>
