@@ -5,8 +5,7 @@
       :load="loadNode"
       lazy
       show-checkbox
-      @check-change="handleCheckChange">
-    </el-tree>
+    ></el-tree>
   </div>
 </template>
 
@@ -18,48 +17,26 @@
             return {
                 props: {
                     label: "name",
-                    children: "zones"
-                },
-                count: 1
+                    children: "zones",
+                    isLeaf: "leaf"
+                }
             }
         },
         methods: {
-            handleCheckChange(data, checked, indeterminate) {
-                console.log(data, checked, indeterminate)
-            },
-            handleNodeClick(data) {
-                console.log(data)
-            },
             loadNode(node, resolve) {
                 if (node.level == 0) {
-                    return resolve([
-                        {name: "region1"},
-                        {name: "region2"}
-                    ])
+                    return resolve([{name: "region"}]);
                 }
-                if (node.level > 3) {
+                if (node.level > 1) {
                     return resolve([]);
                 }
-                var hasChild;
-                if (node.data.name == "region1") {
-                    hasChild = true;
-                } else if (node.data.name == "region2") {
-                    hasChild = false;
-                } else {
-                    hasChild = Math.random() > 0.5;
-                }
                 setTimeout(() => {
-                    var data;
-                    if (hasChild) {
-                        data = [
-                            {name: "zone" + this.count++},
-                            {name: "zone" + this.count++}
-                        ];
-                    } else  {
-                        data = [];
-                    }
+                    const data = [
+                        {name: "leaf", leaf: true},
+                        {name: "zone"}
+                    ]
                     resolve(data)
-                }, 500);
+                }, 500)
             }
         }
     };
