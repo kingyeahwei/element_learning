@@ -1,33 +1,34 @@
 <template>
   <div id="app">
     <el-table
-      ref="singleTable"
-      :data="tableData"
-      highlight-current-row
-      @current-change="handleCurrentChange"
-      style="width: 100%">
+      ref="multipleTable"
+      :data="data"
+      tooltip-effect="dark"
+      style="width: 100%"
+      @selection-change="handleSelectionChange">
       <el-table-column
-        type="index"
-        width="50"
+        type="selection"
+        width="55"
       ></el-table-column>
       <el-table-column
-        property="date"
         label="日期"
-        width="120"
-      ></el-table-column>
+        width="120">
+        <template slot-scope="scope">{{scope.row.date}}</template>
+      </el-table-column>
       <el-table-column
-        property="name"
+        prop="name"
         label="姓名"
         width="120"
       ></el-table-column>
       <el-table-column
-        property="address"
+        prop="address"
         label="地址"
+        show-overflow-tooltip
       ></el-table-column>
     </el-table>
     <div style="margin-top: 20px">
-      <el-button @click="setCurrent(tableData[1])">选中第二行</el-button>
-      <el-button @click="setCurrent({})">取消选择</el-button>
+      <el-button @click="toggleSelection([data[1], data[2]])">切换第二,三行的选中状态</el-button>
+      <el-button @click="toggleSelection([])">取消选择</el-button>
     </div>
   </div>
 </template>
@@ -37,36 +38,54 @@
     name: "app",
     data() {
       return {
-        tableData: [
+        data: [
           {
+            date: '2016-05-03',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
             date: '2016-05-02',
             name: '王小虎',
             address: '上海市普陀区金沙江路 1518 弄'
           }, {
             date: '2016-05-04',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
+            address: '上海市普陀区金沙江路 1518 弄'
           }, {
             date: '2016-05-01',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
+            address: '上海市普陀区金沙江路 1518 弄'
           }, {
-            date: '2016-05-03',
+            date: '2016-05-08',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-06',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-07',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
           }
         ],
-        currentRow: null
+        multipleSelection: []
       }
     },
     methods: {
-      setCurrent(row) {
-        console.log(row)
-        this.$refs.singleTable.setCurrentRow(row)
+      handleSelectionChange(val) {
+        this.multipleSelection = val;
+
       },
-      handleCurrentChange(val) {
-        this.currentRow = val;
-      }
+      toggleSelection(rows) {
+        if (rows) {
+          rows.forEach(row => {
+            this.$refs.multipleTable.toggleRowSelection(row);
+          });
+        } else {
+          this.$refs.multipleTable.clearSelection();
+        }
+      },
     },
   };
 </script>
