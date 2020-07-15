@@ -1,20 +1,40 @@
 <template>
   <div id="app">
-    <el-tree
-      :data="data"
-      show-checkbox
-      default-expand-all
-      node-key="id"
-      ref="tree"
-      highlight-current
-      :props="defaultProps">
-    </el-tree>
-    <div class="buttons">
-      <el-button @click="getCheckedNodes">通过node获取</el-button>
-      <el-button @click="getCheckedKeys">通过key获取</el-button>
-      <el-button @click="setCheckedNodes">通过node设置</el-button>
-      <el-button @click="setCheckedKeys">通过key设置</el-button>
-      <el-button @click="resetChecked">清空</el-button>
+    <div class="block">
+      <p>使用 render-content</p>
+      <el-tree
+        :data="data1"
+        show-checkbox
+        node-key="id"
+        default-expand-all
+        :expand-on-click-node="false"
+        :render-content="renderContent"
+      ></el-tree>
+    </div>
+    <div class="block">
+      <p>使用 scoped slot</p>
+      <el-tree
+        :data="data2"
+        show-checkbox
+        node-key="id"
+        default-expand-all
+        :expand-on-click-node="false">
+        <span class="custom-tree-node" slot-scope="{node, data}">
+          <span>{{node.label}}</span>
+          <span>
+            <el-button
+              type="text"
+              size="mini"
+              @click="() => {append(data)}"
+            >Append</el-button>
+            <el-button
+              type="text"
+              size="mini"
+              @click="() => {remove(node, data)}"
+            >Delete</el-button>
+          </span>
+        </span>
+      </el-tree>
     </div>
   </div>
 </template>
@@ -24,72 +44,84 @@
   export default {
     name: "app",
     data() {
-      return {
-        data: [
-          {
-            id: 1,
-            label: '一级 1',
+      const data = [
+        {
+          id: 1,
+          label: '一级 1',
+          children: [{
+            id: 4,
+            label: '二级 1-1',
             children: [{
-              id: 4,
-              label: '二级 1-1',
-              children: [{
-                id: 9,
-                label: '三级 1-1-1'
-              }, {
-                id: 10,
-                label: '三级 1-1-2'
-              }]
-            }]
-          }, {
-            id: 2,
-            label: '一级 2',
-            children: [{
-              id: 5,
-              label: '二级 2-1'
+              id: 9,
+              label: '三级 1-1-1'
             }, {
-              id: 6,
-              label: '二级 2-2'
+              id: 10,
+              label: '三级 1-1-2'
             }]
+          }]
+        }, {
+          id: 2,
+          label: '一级 2',
+          children: [{
+            id: 5,
+            label: '二级 2-1'
           }, {
-            id: 3,
-            label: '一级 3',
-            children: [{
-              id: 7,
-              label: '二级 3-1'
-            }, {
-              id: 8,
-              label: '二级 3-2'
-            }]
-          }
-        ],
-        defaultProps: {
-          children: "children",
-          label: "label"
+            id: 6,
+            label: '二级 2-2'
+          }]
+        }, {
+          id: 3,
+          label: '一级 3',
+          children: [{
+            id: 7,
+            label: '二级 3-1'
+          }, {
+            id: 8,
+            label: '二级 3-2'
+          }]
         }
+      ];
+      return {
+        data1: JSON.parse(JSON.stringify(data)),
+        data2: JSON.parse(JSON.stringify(data))
       }
     },
     methods: {
-      getCheckedNodes() {
-        console.log(this.$refs.tree.getCheckedNodes());
+      append(data) {
+        const newChild = {id: id++, label: "testtest", children: []};
+        if (!data.children) {
+          this.$set(data, "children", [])
+        }
+        data.children.push(newChild);
       },
-      getCheckedKeys() {
-        console.log(this.$refs.tree.getCheckedKeys());
+      remove(node, data) {
+        const parent =  node.parent;
+        const children = parent.data.children || parent.data;
+        const index = children.findIndex((d) => {d.id == data.id});
+        children.splice(index, 1);
       },
-      setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([
-          {id: 5, label: "二级 2-1"},
-          {id: 9, label: "三级 1-1-1"}
-        ]);
-      },
-      setCheckedKeys() {
-        this.$refs.tree.setCheckedKeys([3]);
-      },
-      resetChecked() {
-        this.$refs.tree.setCheckedKeys([]);
+      renderContent(h, {node, data, store}) {
+        return (
+          <span class="custom-tree-node">
+            <span>{node.label}</span>
+            <span>
+              <el-button size="mini" type="text" on-click={ () => this.append(data) }>Append</el-button>
+              <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
+            </span>
+          </span>
+        )
       }
     }
   };
 </script>
 
 <style lang="less">
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-right: 8px;
+  }
 </style>
