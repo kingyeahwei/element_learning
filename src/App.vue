@@ -2,7 +2,8 @@
   <div id="app">
     <el-table
       :data="tableData"
-      :row-class-name="tableRowClassName"
+      height="250"
+      border
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -30,43 +31,40 @@
             return {
                 tableData: [
                     {
+                        date: '2016-05-03',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
                         date: '2016-05-02',
                         name: '王小虎',
                         address: '上海市普陀区金沙江路 1518 弄'
                     }, {
                         date: '2016-05-04',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1517 弄'
+                        address: '上海市普陀区金沙江路 1518 弄'
                     }, {
                         date: '2016-05-01',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1519 弄'
+                        address: '上海市普陀区金沙江路 1518 弄'
                     }, {
-                        date: '2016-05-03',
+                        date: '2016-05-08',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1516 弄'
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
+                        date: '2016-05-06',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
+                        date: '2016-05-07',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1518 弄'
                     }
                 ]
             }
         },
-        methods: {
-            tableRowClassName({row, rowIndex}) {
-                if (rowIndex == 1) {
-                    return 'warning-row'
-                } else if (rowIndex == 3) {
-                    return 'success-row'
-                }
-                return '';
-            }
-        }
+        methods: {}
     };
 </script>
 
 <style lang="less">
-  .el-table .warning-row {
-    background: oldlace;
-  }
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
 </style>
