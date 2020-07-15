@@ -1,109 +1,119 @@
 <template>
   <div id="app">
-    <el-tree
+    <el-table
       :data="data"
-      node-key="id"
-      default-expand-all
-      @node-drag-start="handleDragStart"
-      @node-drag-enter="handleDragEnter"
-      @node-drag-leave="handleDragLeave"
-      @node-drag-over="handleDragOver"
-      @node-drag-end="handleDragEnd"
-      @node-drop="handleDrop"
-      draggable
-      :allow-drop="allowDrop"
-      :allow-drag="allowDrag"
-    ></el-tree>
+      style="width: 100%"
+      max-height="250">
+      <el-table-column
+        fixed
+        prop="date"
+        label="日期"
+        width="150"
+      ></el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="120"
+      ></el-table-column>
+      <el-table-column
+        prop="province"
+        label="省份"
+        width="120"
+      ></el-table-column>
+      <el-table-column
+        prop="city"
+        label="市区"
+        width="120"
+      ></el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址"
+        width="300"
+      ></el-table-column>
+      <el-table-column
+        prop="zip"
+        label="邮编"
+        width="120"
+      ></el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="120">
+        <template slot-scope="scope">
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, data, scope)"
+            type="text"
+            size="small"
+          >移除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-  let id = 0;
   export default {
     name: "app",
     data() {
       return {
         data: [
           {
-            id: 1,
-            label: '一级 1',
-            children: [{
-              id: 4,
-              label: '二级 1-1',
-              children: [{
-                id: 9,
-                label: '三级 1-1-1'
-              }, {
-                id: 10,
-                label: '三级 1-1-2'
-              }]
-            }]
+            date: '2016-05-03',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
           }, {
-            id: 2,
-            label: '一级 2',
-            children: [{
-              id: 5,
-              label: '二级 2-1'
-            }, {
-              id: 6,
-              label: '二级 2-2'
-            }]
+            date: '2016-05-02',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
           }, {
-            id: 3,
-            label: '一级 3',
-            children: [{
-              id: 7,
-              label: '二级 3-1'
-            }, {
-              id: 8,
-              label: '二级 3-2',
-              children: [{
-                id: 11,
-                label: '三级 3-2-1'
-              }, {
-                id: 12,
-                label: '三级 3-2-2'
-              }, {
-                id: 13,
-                label: '三级 3-2-3'
-              }]
-            }]
+            date: '2016-05-04',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
+          }, {
+            date: '2016-05-01',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
+          }, {
+            date: '2016-05-08',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
+          }, {
+            date: '2016-05-06',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
+          }, {
+            date: '2016-05-07',
+            name: '王小虎',
+            province: '上海',
+            city: '普陀区',
+            address: '上海市普陀区金沙江路 1518 弄',
+            zip: 200333
           }
         ],
-        defaultProps: {
-          children: "children",
-          label: 'label'
-        }
       }
     },
     methods: {
-      handleDragStart(node, ev) {
-        console.log("drag start", node);
-      },
-      handleDragEnter(draggingNode, dropNode, ev) {
-        console.log("tree drag enter", dropNode.label);
-      },
-      handleDragLeave(draggingNode, dropNode, ev) {
-        console.log("tree drag leave:", dropNode.label);
-      },
-      handleDragOver(draggingNode, dropNode, ev) {
-        console.log("tree drag over:", dropNode.label);
-      },
-      handleDragEnd(draggingNode, dropNode, dropType, ev) {
-        console.log("tree drag end:", dropNode && dropNode.label, dropType)
-      },
-      handleDrop(draggingNode, dropNode, dropType, ev) {
-        console.log('tree drop: ', dropNode.label, dropType);
-      },
-      allowDrop(draggingNode, dropNode, type) {
-        if (dropNode.data.label === '二级 3-1') {
-          return type !== 'inner';
-        } else {
-          return true;
-        }
-      },
-      allowDrag(draggingNode) {
-        return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+      deleteRow(index, rows, scope) {
+        console.log(scope);
+        rows.splice(index, 1)
       }
     },
   };
