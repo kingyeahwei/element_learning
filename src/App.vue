@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <el-pagination
-      :page-size="20"
-      :pager-count="11"
-      layout="prev, pager, next"
+      background
+      layout="prev, pager, next, jumper, total"
       :total="1000"
     ></el-pagination>
   </div>
