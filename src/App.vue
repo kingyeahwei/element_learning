@@ -1,18 +1,62 @@
 <template>
   <div id="app">
     <el-table
-    :data="filterHandle"
-    style="width: 100%">
-      <el-table-column label="Date" prop="date"></el-table-column>
-      <el-table-column label="Name" prop="name"></el-table-column>
-      <el-table-column align="right">
-        <template slot-scope="scope" slot="header">
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索"></el-input>
-        </template>
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">delete</el-button>
-        </template>
+      :data="tableData"
+      border
+      show-summary
+      style="width: 100%">
+      <el-table-column
+        prop="id"
+        label="ID"
+        width="180"
+      ></el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+      ></el-table-column>
+      <el-table-column
+        prop="amount1"
+        label="数值1"
+      ></el-table-column>
+      <el-table-column
+        prop="amount2"
+        label="数值2"
+        sortable
+      ></el-table-column>
+      <el-table-column
+        prop="amount3"
+        label="数值3"
+        sortable
+      ></el-table-column>
+    </el-table>
+
+    <el-table
+      :data="tableData"
+      border
+      height="200"
+      :summary-method="getSummaries"
+      show-summary
+      style="width: 100%; margin-top: 20px">
+      <el-table-column
+        prop="id"
+        label="ID"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名">
+      </el-table-column>
+      <el-table-column
+        prop="amount1"
+        label="数值 1（元）">
+      </el-table-column>
+      <el-table-column
+        prop="amount2"
+        label="数值 2（元）">
+      </el-table-column>
+      <el-table-column
+        prop="amount3"
+        label="数值 3（元）">
       </el-table-column>
     </el-table>
   </div>
@@ -25,42 +69,71 @@
             return {
                 tableData: [
                     {
-                        date: '2016-05-02',
-                        name: '王大虎',
-                        address: '上海市普陀区金沙江路 1518 弄'
-                    }, {
-                        date: '2016-05-04',
+                        id: '12987122',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1517 弄'
+                        amount1: '234',
+                        amount2: '3.2',
+                        amount3: 10
                     }, {
-                        date: '2016-05-01',
+                        id: '12987123',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1519 弄'
+                        amount1: '165',
+                        amount2: '4.43',
+                        amount3: 12
                     }, {
-                        date: '2016-05-03',
+                        id: '12987124',
                         name: '王小虎',
-                        address: '上海市普陀区金沙江路 1516 弄'
+                        amount1: '324',
+                        amount2: '1.9',
+                        amount3: 9
+                    }, {
+                        id: '12987125',
+                        name: '王小虎',
+                        amount1: '621',
+                        amount2: '2.2',
+                        amount3: 17
+                    }, {
+                        id: '12987126',
+                        name: '王小虎',
+                        amount1: '539',
+                        amount2: '4.1',
+                        amount3: 15
                     }
                 ],
                 search: ""
             }
         },
         methods: {
-            handleEdit(index, row) {
-                console.log(index, row);
-            },
-            handleDelete(index, row) {
-                console.log(index, row);
-            },
-        },
-        computed: {
-            filterHandle() {
-                let _this = this
-                return this.tableData.filter((data) => {
-                    return  !_this.search || data.name.toLowerCase().includes(_this.search.toLowerCase())
-                })
+            getSummaries(param) {
+                const { columns, data } = param;
+                const sums = [];
+                columns.forEach((column, index) => {
+                    if (index === 0) {
+                        sums[index] = '总价';
+                        return;
+                    }
+                    if (index === 1) {
+                        sums[index] = "无";
+                        return;
+                    }
+                    const values = data.map(item => Number(item[column.property]));
+                    if (!values.every(value => isNaN(value))) {
+                        sums[index] = values.reduce((prev, curr) => {
+                            const value = Number(curr);
+                            if (!isNaN(value)) {
+                                return prev + curr;
+                            } else {
+                                return prev;
+                            }
+                        }, 0);
+                        sums[index] += ' 元';
+                    } else {
+                        sums[index] = 'N/A';
+                    }
+                });
+                return sums;
             }
-        }
+        },
     };
 </script>
 
