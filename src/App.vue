@@ -1,10 +1,29 @@
 <template>
   <div id="app">
     <el-alert
-      title="带辅助性文字介绍"
-      description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……"
-      type="success">
-    </el-alert>
+      title="成功提示的文案"
+      type="success"
+      description="沙发沙发斯蒂芬斯蒂芬是非得失放沙发斯蒂芬放沙发斯蒂芬"
+      show-icon
+    ></el-alert>
+    <el-alert
+      title="消息提示的文案"
+      type="info"
+      description="沙发沙发斯蒂芬斯蒂芬是非得失放沙发斯蒂芬放沙发斯蒂芬"
+      show-icon
+    ></el-alert>
+    <el-alert
+      title="警告提示的文案"
+      type="warning"
+      description="沙发沙发斯蒂芬斯蒂芬是非得失放沙发斯蒂芬放沙发斯蒂芬"
+      show-icon
+    ></el-alert>
+    <el-alert
+      title="错误提示的文案"
+      type="error"
+      description="沙发沙发斯蒂芬斯蒂芬是非得失放沙发斯蒂芬放沙发斯蒂芬"
+      show-icon
+    ></el-alert>
   </div>
 </template>
 
