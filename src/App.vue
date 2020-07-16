@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-pagination
-      background
-      layout="prev, pager, next, jumper, total"
-      :total="1000"
+      small
+      layout="sizes, prev, pager, next, jumper"
+      :total="50"
     ></el-pagination>
   </div>
 </template>
