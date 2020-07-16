@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-    <span>页数比较少时的效果</span>
     <el-pagination
-      layout="prev, pager, next"
-      :total="50"
-    ></el-pagination>
-    <p>大于7页时的效果</p>
-    <el-pagination
+      :page-size="20"
+      :pager-count="11"
       layout="prev, pager, next"
       :total="1000"
     ></el-pagination>
