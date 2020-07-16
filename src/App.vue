@@ -2,40 +2,20 @@
   <div id="app">
     <el-table
       :data="tableData"
+      :span-method="arraySpanMethod"
       border
-      show-summary
       style="width: 100%">
-      <el-table-column
-        prop="id"
-        label="ID"
-        width="180"
-      ></el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-      ></el-table-column>
-      <el-table-column
-        prop="amount1"
-        label="数值1"
-      ></el-table-column>
-      <el-table-column
-        prop="amount2"
-        label="数值2"
-        sortable
-      ></el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="数值3"
-        sortable
-      ></el-table-column>
+      <el-table-column prop="id" label="ID" width="180"></el-table-column>
+      <el-table-column prop="name" label="姓名"></el-table-column>
+      <el-table-column prop="amount1" label="数值1" sortable></el-table-column>
+      <el-table-column prop="amount2" label="数值2" sortable></el-table-column>
+      <el-table-column prop="amount3" label="数值3" sortable></el-table-column>
     </el-table>
 
     <el-table
       :data="tableData"
+      :span-method="objectSpanMethod"
       border
-      height="200"
-      :summary-method="getSummaries"
-      show-summary
       style="width: 100%; margin-top: 20px">
       <el-table-column
         prop="id"
@@ -99,39 +79,33 @@
                         amount2: '4.1',
                         amount3: 15
                     }
-                ],
-                search: ""
+                ]
             }
         },
         methods: {
-            getSummaries(param) {
-                const { columns, data } = param;
-                const sums = [];
-                columns.forEach((column, index) => {
-                    if (index === 0) {
-                        sums[index] = '总价';
-                        return;
+            arraySpanMethod({row, column, rowIndex, columnIndex}) {
+                if (rowIndex % 2 === 0) {
+                    if (columnIndex === 0) {
+                        return [1, 2];
+                    } else if (columnIndex === 1) {
+                        return [0, 0];
                     }
-                    if (index === 1) {
-                        sums[index] = "无";
-                        return;
+                }
+            },
+            objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+                if (columnIndex === 0) {
+                    if (rowIndex === 1) {
+                        return {
+                            rowspan: 2,
+                            colspan: 1
+                        };
+                    } else if (rowIndex === 2) {
+                        return {
+                            rowspan: 0,
+                            colspan: 0
+                        };
                     }
-                    const values = data.map(item => Number(item[column.property]));
-                    if (!values.every(value => isNaN(value))) {
-                        sums[index] = values.reduce((prev, curr) => {
-                            const value = Number(curr);
-                            if (!isNaN(value)) {
-                                return prev + curr;
-                            } else {
-                                return prev;
-                            }
-                        }, 0);
-                        sums[index] += ' 元';
-                    } else {
-                        sums[index] = 'N/A';
-                    }
-                });
-                return sums;
+                }
             }
         },
     };
