@@ -1,14 +1,12 @@
 <template>
   <div id="app">
     <el-badge
-      :value="200"
-      :max="99"
+      value="new"
       class="item">
       <el-button size="small">评论</el-button>
     </el-badge>
     <el-badge
-      :value="100"
-      :max="10"
+      value="hot"
       class="item">
       <el-button size="small">回复</el-button>
     </el-badge>
