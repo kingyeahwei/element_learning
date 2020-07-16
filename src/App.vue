@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <el-alert title="不可关闭的alert" type="success" :closable="false"></el-alert>
-    <el-alert title="自定义 close-text" close-text="知道了"></el-alert>
-    <el-alert title="设置了回调的alert" type="warning" @close="hello"></el-alert>
+    <el-alert title="成功提示的文案" type="success" show-icon></el-alert>
+    <el-alert title="消息提示的文案" type="info" show-icon></el-alert>
+    <el-alert title="警告提示的文案" type="warning" show-icon></el-alert>
+    <el-alert title="错误提示的文案" type="error" show-icon></el-alert>
   </div>
 </template>
 
@@ -14,9 +15,6 @@
       }
     },
     methods: {
-      hello() {
-        alert("hello world");
-      }
     }
   }
 </script>
