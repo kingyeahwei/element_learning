@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <div class="demo-fit">
-      <div class="block" v-for="fit in fits" :key="fit">
-        <span class="title">{{fit}}</span>
-        <el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar>
-      </div>
-    </div>
+    <el-alert title="成功提示的文案" type="success"></el-alert>
+    <el-alert title="消息提示的文案" type="info"></el-alert>
+    <el-alert title="警告提示的文案" type="warning"></el-alert>
+    <el-alert title="错误提示的文案" type="error"></el-alert>
   </div>
 </template>
 
@@ -14,8 +12,6 @@
     name: "app",
     data() {
       return {
-        fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
       }
     },
     methods: {
