@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <el-tooltip placement="top">
-      <div slot="content">多行信息<br>第二行信息</div>
-      <el-button>top center</el-button>
+    <el-tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom" effect="light">
+      <el-button @click="disabled = !disabled">点击{{disabled ? '开启' : '关闭'}} tooltip 功能</el-button>
     </el-tooltip>
   </div>
 </template>
@@ -12,6 +11,7 @@
         name: "app",
         data() {
             return {
+                disabled: false
             }
         },
         methods: {
