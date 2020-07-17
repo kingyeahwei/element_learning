@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <el-calendar>
-      <template slot="dateCell" slot-scope="{date, data}">
-        <p :class="data.isSelected ? 'is-selected' : ''">
-          {{data.day.split("-").slice(1).join("-")}} {{data.isSelected ? "✔" : ""}}
-        </p>
-      </template>
-    </el-calendar>
+    <div class="block" v-for="fit in fits" :key="fit">
+      <span class="demonstration">{{fit}}</span>
+      <el-image
+        style="width: 100px; height: 100px"
+        :src="url"
+        :fit="fit"
+      ></el-image>
+    </div>
   </div>
 </template>
 
@@ -15,7 +16,8 @@
     name: "app",
     data() {
       return {
-        value: new Date(new Date().getTime() - 3600 * 1000 * 24 * 24)
+        fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
       }
     },
     methods: {
