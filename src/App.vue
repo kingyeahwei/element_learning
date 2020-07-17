@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{path: '/'}">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-    </el-breadcrumb>
+    <el-page-header @back="goBack" content="详情页面">
+      <template slot="title">title</template>
+      <template slot="content">content</template>
+    </el-page-header>
   </div>
 </template>
 
@@ -17,6 +15,9 @@
             }
         },
         methods: {
+            goBack() {
+                console.log("go back!!")
+            }
         }
     }
 </script>
