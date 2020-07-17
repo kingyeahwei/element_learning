@@ -1,10 +1,8 @@
 <template>
-  <div id="app" style="padding: 300px">
-    <el-tooltip content="top center" placement="top">
-      <el-button>dark</el-button>
-    </el-tooltip>
-    <el-tooltip content="bottom center" placement="bottom" effect="light">
-      <el-button>light</el-button>
+  <div id="app">
+    <el-tooltip placement="top">
+      <div slot="content">多行信息<br>第二行信息</div>
+      <el-button>top center</el-button>
     </el-tooltip>
   </div>
 </template>
