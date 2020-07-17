@@ -1,16 +1,14 @@
 <template>
-  <div id="app"  style="margin: 200px 0 0 200px">
-    <el-popconfirm
-      confirm-button-text="好的"
-      cancel-button-text="不用了"
-      icon="el-icon-search"
-      iconColor="green"
-      title="这是一段内容确定删除吗?"
-      @onConfirm="handleConfirm"
-      @onCancel="handleCancel"
-    >
-      <el-button slot="reference">删除</el-button>
-    </el-popconfirm>
+  <div id="app">
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>卡片名称</span>
+        <el-button style="float: right; padding: 3px 0;" type="text">操作按钮</el-button>
+      </div>
+      <div v-for="o in 4" :key="o" class="text item">
+        {{"列表内容" + o}}
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -22,16 +20,18 @@
             }
         },
         methods: {
-            handleConfirm() {
-                alert("确定")
-            }
-            ,
-            handleCancel() {
-                alert("取消")
-            }
         }
     }
 </script>
 
 <style lang="less">
+  .text {
+    font-size: 14px;
+  }
+  .item {
+    margin-bottom: 18px;
+  }
+  .box-card {
+    width: 480px;
+  }
 </style>
