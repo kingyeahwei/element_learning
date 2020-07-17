@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button :plain="true" @click="openHTML">使用html片段</el-button>
+    <el-button type="text" @click="open">点击打开messagebox</el-button>
   </div>
 </template>
 
@@ -11,10 +11,15 @@
             return {}
         },
         methods: {
-            openHTML() {
-                this.$message({
-                    dangerouslyUseHTMLString: true,
-                    message: "<strong>这是<i>HMTL</i>片段</strong>"
+            open() {
+                this.$alert("这是一段内容", "标题内容", {
+                    confirmButtonText: "确定",
+                    callback: (action) => {
+                        this.$message({
+                            type: "info",
+                            message: `action: ${action}`
+                        })
+                    }
                 })
             }
         }
