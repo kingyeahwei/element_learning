@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <el-button type="text" @click="open">点击打开 message box</el-button>
+    <el-button plain @click="open1">可自动关闭</el-button>
+    <el-button plain @click="open2">不会自动关闭</el-button>
   </div>
 </template>
 
@@ -11,24 +12,18 @@
             return {}
         },
         methods: {
-            open() {
-                this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
-                    type: "warning",
-                    center: true
+            open1() {
+                const h = this.$createElement;
+                this.$notify({
+                    title: "标题名称",
+                    message: h('i', {style: "color: teal"}, "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案")
                 })
-                .then(() => {
-                    this.$message({
-                        type: "success",
-                        message: "删除成功"
-                    })
-                })
-                .catch(() => {
-                    this.$message({
-                        type: "info",
-                        message: "已经取消删除"
-                    })
+            },
+            open2() {
+                this.$notify({
+                    title: "提示",
+                    message: "这是一条不会自动关闭的消息",
+                    duration: 0
                 })
             }
         }
