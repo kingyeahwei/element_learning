@@ -1,8 +1,40 @@
 <template>
-  <div id="app">
-    <el-tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom" effect="light">
-      <el-button @click="disabled = !disabled">点击{{disabled ? '开启' : '关闭'}} tooltip 功能</el-button>
-    </el-tooltip>
+  <div id="app"  style="margin: 200px 0 0 200px">
+    <el-popover
+      placement="top-start"
+      title="标题"
+      width="200"
+      trigger="hover"
+      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+      <el-button slot="reference">hover 激活</el-button>
+    </el-popover>
+    <el-popover
+      placement="bottom"
+      title="标题"
+      width="200"
+      trigger="click"
+      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+      <el-button slot="reference">click 激活</el-button>
+    </el-popover>
+    <el-popover
+      ref="popover"
+      placement="right"
+      title="标题"
+      width="200"
+      trigger="focus"
+      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+    ></el-popover>
+    <el-button v-popover:popover>focus 激活</el-button>
+
+    <el-popover
+      placement="bottom"
+      title="标题"
+      width="200"
+      trigger="manual"
+      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+      v-model="visible">
+      <el-button slot="reference" @click="visible = !visible">手动激活</el-button>
+    </el-popover>
   </div>
 </template>
 
@@ -11,7 +43,7 @@
         name: "app",
         data() {
             return {
-                disabled: false
+                visible: false
             }
         },
         methods: {
