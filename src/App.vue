@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <el-carousel indicator-position="outside">
+    <el-carousel :interval="5000" arrow="always">
       <el-carousel-item
-        v-for="item in 4" :key="item">
+        v-for="item in 4"
+        :key="item">
         <h3>{{item}}</h3>
       </el-carousel-item>
     </el-carousel>
@@ -28,9 +29,8 @@
     margin: 0;
     text-align: center;
   }
-
   .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
+    background-color: #99a9df;
   }
   .el-carousel__item:nth-child(2n + 1) {
     background-color: #d3dce6;
