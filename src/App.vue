@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <el-button plain @click="open1">右上角</el-button>
-    <el-button plain @click="open2">右下角</el-button>
-    <el-button plain @click="open3">左下角</el-button>
-    <el-button plain @click="open4">左上角</el-button>
+    <el-button plain @click="open">偏移的消息</el-button>
   </div>
 </template>
 
@@ -14,33 +11,14 @@
             return {}
         },
         methods: {
-            open1() {
+            open() {
                 this.$notify({
-                    title: "自定义位置",
-                    message: "右上角弹出的消息",
-                });
-            },
-            open2() {
-                this.$notify({
-                    title: "自定义位置",
-                    message: "右下角弹出的消息",
+                    title: "偏移",
+                    message: "这是一条带有偏移的提示消息",
+                    offset: 300,
                     position: "bottom-right"
-                });
-            },
-            open3() {
-                this.$notify({
-                    title: "自定义位置",
-                    message: "左下角弹出的消息",
-                    position: "bottom-left"
                 })
             },
-            open4() {
-                this.$notify({
-                    title: "自定义位置",
-                    message: "左上角弹出的消息",
-                    position: "top-left"
-                })
-            }
         }
     }
 </script>
