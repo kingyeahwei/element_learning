@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <span>雨纷纷</span>
-    <el-divider direction="vertical"></el-divider>
-    <span>旧故里</span>
-    <el-divider direction="vertical"></el-divider>
-    <span>草木深</span>
+    <el-calendar>
+      <template slot="dateCell" slot-scope="{date, data}">
+        <p :class="data.isSelected ? 'is-selected' : ''">
+          {{data.day.split("-").slice(1).join("-")}} {{data.isSelected ? "✔" : ""}}
+        </p>
+      </template>
+    </el-calendar>
   </div>
 </template>
 
@@ -13,6 +15,7 @@
     name: "app",
     data() {
       return {
+        value: new Date(new Date().getTime() - 3600 * 1000 * 24 * 24)
       }
     },
     methods: {
@@ -21,4 +24,7 @@
 </script>
 
 <style lang="less">
+  .is-selected {
+    color: #1989fa;
+  }
 </style>
