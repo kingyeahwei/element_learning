@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button :plain="true" @click="openCenter">文字居中</el-button>
+    <el-button :plain="true" @click="openHTML">使用html片段</el-button>
   </div>
 </template>
 
@@ -8,15 +8,13 @@
     export default {
         name: "app",
         data() {
-            return {
-
-            }
+            return {}
         },
         methods: {
-            openCenter() {
+            openHTML() {
                 this.$message({
-                    message: "居中的文字",
-                    center: true
+                    dangerouslyUseHTMLString: true,
+                    message: "<strong>这是<i>HMTL</i>片段</strong>"
                 })
             }
         }
