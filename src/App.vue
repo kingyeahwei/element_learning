@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button type="text" @click="open">点击打开messagebox</el-button>
+    <el-button type="text" @click="open">点击打开message box</el-button>
   </div>
 </template>
 
@@ -12,14 +12,20 @@
         },
         methods: {
             open() {
-                this.$alert("这是一段内容", "标题内容", {
+                this.$confirm("此操作将永久删除文件,是否继续?", "提示", {
                     confirmButtonText: "确定",
-                    callback: (action) => {
-                        this.$message({
-                            type: "info",
-                            message: `action: ${action}`
-                        })
-                    }
+                    cancelButtonText: "取消",
+                    type: "warning"
+                }).then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "删除成功"
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "取消删除"
+                    })
                 })
             }
         }
