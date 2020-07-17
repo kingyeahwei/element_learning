@@ -12,8 +12,22 @@
         },
         methods: {
             open() {
-                this.$alert("<strong>这是<i>HMTL</i>片段</strong>", "HTML片段", {
-                    dangerouslyUseHTMLString: true
+                this.$confirm("检测到未保存的内容,是否在离开页面钱保存修改?", "确认消息", {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: "保存",
+                    cancelButtonText: "放弃修改"
+                })
+                .then(() => {
+                    this.$message({
+                        type: "info",
+                        message: "保存修改"
+                    })
+                })
+                .catch((action) => {
+                    this.$message({
+                        type: "info",
+                        message: action == "cancel" ? "放弃保存并离开页面" : "停留在当前页面"
+                    })
                 })
             }
         }
