@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button plain @click="open">使用HTML片段</el-button>
+    <el-button plain @click="open">隐藏关闭按钮</el-button>
   </div>
 </template>
 
@@ -12,10 +12,11 @@
         },
         methods: {
             open() {
-                this.$notify({
-                    title: "html片段",
-                    dangerouslyUseHTMLString: true,
-                    message: "<strong>这是<i>HTML</i>片段</strong>"
+                this.$notify.success({
+                    title: "info",
+                    message: "这是一条没有关闭按钮的消息",
+                    showClose: false
+
                 })
             },
         }
