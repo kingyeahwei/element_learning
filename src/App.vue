@@ -12,21 +12,22 @@
         },
         methods: {
             open() {
-                this.$confirm("检测到未保存的内容,是否在离开页面钱保存修改?", "确认消息", {
-                    distinguishCancelAndClose: true,
-                    confirmButtonText: "保存",
-                    cancelButtonText: "放弃修改"
+                this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                    center: true
                 })
                 .then(() => {
                     this.$message({
-                        type: "info",
-                        message: "保存修改"
+                        type: "success",
+                        message: "删除成功"
                     })
                 })
-                .catch((action) => {
+                .catch(() => {
                     this.$message({
                         type: "info",
-                        message: action == "cancel" ? "放弃保存并离开页面" : "停留在当前页面"
+                        message: "已经取消删除"
                     })
                 })
             }
