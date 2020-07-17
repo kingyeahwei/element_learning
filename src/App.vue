@@ -1,6 +1,51 @@
 <template>
   <div id="app">
-    <el-button plain @click="open">隐藏关闭按钮</el-button>
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect">
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="3" disabled>消息中心</el-menu-item>
+      <el-menu-item index="4"><a href="https://www.ele.me" target="_black">订单管理</a></el-menu-item>
+    </el-menu>
+    <div class="line"></div>
+    <el-menu
+      :default-active="activeIndex2"
+      close="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="3" disabled>消息中心</el-menu-item>
+      <el-menu-item index="4"><a href="https://www.ele.me" target="_black">订单管理</a></el-menu-item>
+    </el-menu>
   </div>
 </template>
 
@@ -8,17 +53,15 @@
     export default {
         name: "app",
         data() {
-            return {}
+            return {
+                activeIndex: "1",
+                activeIndex2: "1"
+            }
         },
         methods: {
-            open() {
-                this.$notify.success({
-                    title: "info",
-                    message: "这是一条没有关闭按钮的消息",
-                    showClose: false
-
-                })
-            },
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath)
+            }
         }
     }
 </script>
