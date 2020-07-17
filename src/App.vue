@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <el-button plain @click="open1">可自动关闭</el-button>
-    <el-button plain @click="open2">不会自动关闭</el-button>
+    <el-button plain @click="open1">成功</el-button>
+    <el-button plain @click="open2">警告</el-button>
+    <el-button plain @click="open3">消息</el-button>
+    <el-button plain @click="open4">错误</el-button>
   </div>
 </template>
 
@@ -13,17 +15,29 @@
         },
         methods: {
             open1() {
-                const h = this.$createElement;
                 this.$notify({
-                    title: "标题名称",
-                    message: h('i', {style: "color: teal"}, "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案")
-                })
+                    title: "成功",
+                    message: "这是一条成功的提示消息",
+                    type: "success"
+                });
             },
             open2() {
                 this.$notify({
-                    title: "提示",
-                    message: "这是一条不会自动关闭的消息",
-                    duration: 0
+                    title: "警告",
+                    message: "这是一条警告的提示消息",
+                    type: "warning"
+                });
+            },
+            open3() {
+                this.$notify.info({
+                    title: "消息",
+                    message: "这是一条消息的提示消息"
+                })
+            },
+            open4() {
+                this.$notify.error({
+                    title: "错误",
+                    message: "这是一个错误的提示消息"
                 })
             }
         }
