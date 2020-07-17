@@ -1,8 +1,15 @@
 <template>
   <div id="app">
-    <ul class="infinite-list" v-infinite-scroll="load" style="overflow:auto">
-      <li v-for="i in count" class="infinite-list-item">{{ i }}</li>
-    </ul>
+    <div class="infinite-list-wrapper" style="overflow: auto">
+      <ul
+        class="list"
+        v-infinite-scroll="load"
+        infinite-scroll-disabled="disabled">
+        <li v-for="i in count" class="list-item">{{i}}</li>
+      </ul>
+      <p v-if="loading">加载中</p>
+      <p v-if="noMore">没有更多了</p>
+    </div>
   </div>
 </template>
 
@@ -11,32 +18,49 @@
     name: "app",
     data() {
       return {
-        count: 0
+        count: 10,
+        loading: false
+      }
+    },
+    computed: {
+      noMore() {
+        return this.count >= 20;
+      },
+      disabled() {
+        return this.loading || this.noMore
       }
     },
     methods: {
-      load () {
-        console.log(111)
-        this.count += 2
+      load() {
+        this.loading = true;
+        setTimeout(() => {
+          this.count += 2;
+          this.loading = false;
+        }, 2000)
       }
     }
   }
 </script>
 
 <style lang="less">
-  .infinite-list {
+  .infinite-list-wrapper {
     height: 300px;
+    text-align: center;
+  }
+  .infinite-list-wrapper .list {
     padding: 0;
     margin: 0;
     list-style: none;
   }
-  .infinite-list .infinite-list-item {
+  .infinite-list-wrapper .list-item {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 50px;
-    background: #e8f3fe;
-    margin: 10px;
-    color: #7dbcfc;
+    background: #fff6f6;
+    color: #ff8484;
+  }
+  .infinite-list-wrapper .list-item+.list-item {
+    margin-top: 10px;
   }
 </style>
