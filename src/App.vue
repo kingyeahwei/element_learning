@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <el-button plain @click="open1">成功</el-button>
-    <el-button plain @click="open2">警告</el-button>
-    <el-button plain @click="open3">消息</el-button>
-    <el-button plain @click="open4">错误</el-button>
+    <el-button plain @click="open1">右上角</el-button>
+    <el-button plain @click="open2">右下角</el-button>
+    <el-button plain @click="open3">左下角</el-button>
+    <el-button plain @click="open4">左上角</el-button>
   </div>
 </template>
 
@@ -16,28 +16,29 @@
         methods: {
             open1() {
                 this.$notify({
-                    title: "成功",
-                    message: "这是一条成功的提示消息",
-                    type: "success"
+                    title: "自定义位置",
+                    message: "右上角弹出的消息",
                 });
             },
             open2() {
                 this.$notify({
-                    title: "警告",
-                    message: "这是一条警告的提示消息",
-                    type: "warning"
+                    title: "自定义位置",
+                    message: "右下角弹出的消息",
+                    position: "bottom-right"
                 });
             },
             open3() {
-                this.$notify.info({
-                    title: "消息",
-                    message: "这是一条消息的提示消息"
+                this.$notify({
+                    title: "自定义位置",
+                    message: "左下角弹出的消息",
+                    position: "bottom-left"
                 })
             },
             open4() {
-                this.$notify.error({
-                    title: "错误",
-                    message: "这是一个错误的提示消息"
+                this.$notify({
+                    title: "自定义位置",
+                    message: "左上角弹出的消息",
+                    position: "top-left"
                 })
             }
         }
