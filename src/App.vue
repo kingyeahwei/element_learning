@@ -1,45 +1,12 @@
 <template>
   <div id="app">
-    <el-dropdown split-button type="primary">
-      默认尺寸
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>黄金糕</el-dropdown-item>
-        <el-dropdown-item>狮子头</el-dropdown-item>
-        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-        <el-dropdown-item>双皮奶</el-dropdown-item>
-        <el-dropdown-item>蚵仔煎</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <el-dropdown split-button type="primary" size="medium">
-      默认尺寸
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>黄金糕</el-dropdown-item>
-        <el-dropdown-item>狮子头</el-dropdown-item>
-        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-        <el-dropdown-item>双皮奶</el-dropdown-item>
-        <el-dropdown-item>蚵仔煎</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <el-dropdown split-button type="primary" size="small">
-      默认尺寸
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>黄金糕</el-dropdown-item>
-        <el-dropdown-item>狮子头</el-dropdown-item>
-        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-        <el-dropdown-item>双皮奶</el-dropdown-item>
-        <el-dropdown-item>蚵仔煎</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <el-dropdown split-button type="primary" size="mini">
-      默认尺寸
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>黄金糕</el-dropdown-item>
-        <el-dropdown-item>狮子头</el-dropdown-item>
-        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-        <el-dropdown-item>双皮奶</el-dropdown-item>
-        <el-dropdown-item>蚵仔煎</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+    <el-steps :active="active" finish-status="success">
+      <el-step title="步骤1"></el-step>
+      <el-step title="步骤2"></el-step>
+      <el-step title="步骤3"></el-step>
+      <el-step title="步骤4"></el-step>
+    </el-steps>
+    <el-button style="margin-top: 12px" @click="next">下一步</el-button>
   </div>
 </template>
 
@@ -48,9 +15,15 @@
         name: "app",
         data() {
             return {
+                active: 1
             }
         },
         methods: {
+            next() {
+                if (this.active++ > 3) {
+                    this.active = 0;
+                }
+            }
         }
     }
 </script>
