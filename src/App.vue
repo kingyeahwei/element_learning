@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <el-steps :space="200" :active="1" finish-status="success">
-      <el-step title="已完成"></el-step>
-      <el-step title="进行中"></el-step>
-      <el-step title="步骤3"></el-step>
+    <el-steps :active="1">
+      <el-step title="步骤1" description="这是一段很长很长很长的描述性文字这是一段很长很长很长的描述性文字"></el-step>
+      <el-step title="步骤2" description="这是一段很长很长很长的描述性文字这是一段很长很长很长的描述性文字"></el-step>
+      <el-step title="步骤3" description="这是一段很长很长很长的描述性文字这是一段很长很长很长的描述性文字"></el-step>
     </el-steps>
   </div>
 </template>
