@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <span>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</span>
-    <el-divider></el-divider>
-    <span>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</span>
+    <span>头上一片晴天，心中一个想念</span>
+    <el-divider content-position="left">少年包青天</el-divider>
+    <span>头上一片晴天，心中一个想念</span>
+    <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
+    <span>头上一片晴天，心中一个想念</span>
+    <el-divider content-position="right">阿里云</el-divider>
   </div>
 </template>
 
