@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-carousel :interval="4000" type="card" height="200px">
+    <el-carousel height="200px" direction="vertical" :autoplay="false">
       <el-carousel-item v-for="item in 6" :key="item">
         <h3 class="medium">{{item}}</h3>
       </el-carousel-item>
@@ -27,9 +27,11 @@
     margin: 0;
     text-align: center;
   }
+
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
   }
+
   .el-carousel__item:nth-child(2n + 1) {
     background-color: #d3dce6;
   }
