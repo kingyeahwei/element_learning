@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <el-steps :active="active" finish-status="success">
-      <el-step title="步骤1"></el-step>
-      <el-step title="步骤2"></el-step>
+    <el-steps :space="200" :active="1" finish-status="success">
+      <el-step title="已完成"></el-step>
+      <el-step title="进行中"></el-step>
       <el-step title="步骤3"></el-step>
-      <el-step title="步骤4"></el-step>
     </el-steps>
-    <el-button style="margin-top: 12px" @click="next">下一步</el-button>
   </div>
 </template>
 
