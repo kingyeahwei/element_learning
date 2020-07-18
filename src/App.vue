@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-    <div class="infinite-list-wrapper" style="overflow: auto">
-      <ul
-        class="list"
-        v-infinite-scroll="load"
-        infinite-scroll-disabled="disabled">
-        <li v-for="i in count" class="list-item">{{i}}</li>
-      </ul>
-      <p v-if="loading">加载中</p>
-      <p v-if="noMore">没有更多了</p>
-    </div>
+    <el-radio-group v-model="direction">
+      <el-radio label="ltr">从左往右开</el-radio>
+      <el-radio label="rtl">从右往左开</el-radio>
+      <el-radio label="ttb">从上往下开</el-radio>
+      <el-radio label="btt">从下往上开</el-radio>
+    </el-radio-group>
+    <el-button @click="drawer = true" type="primary" style="margin-left: 16px">点我打开</el-button>
+    <el-drawer
+      title="我是标题"
+      :visible.sync="drawer"
+      :direction="direction"
+      :before-close="handleClose">
+      <span>我来了!!!</span>
+    </el-drawer>
   </div>
 </template>
 
@@ -18,49 +22,25 @@
     name: "app",
     data() {
       return {
-        count: 10,
-        loading: false
+        drawer: false,
+        direction: 'rtl'
       }
     },
     computed: {
-      noMore() {
-        return this.count >= 20;
-      },
-      disabled() {
-        return this.loading || this.noMore
-      }
     },
     methods: {
-      load() {
-        this.loading = true;
-        setTimeout(() => {
-          this.count += 2;
-          this.loading = false;
-        }, 2000)
+      handleClose(done) {
+        this.$confirm("确认关闭?")
+        .then(() => {
+          done()
+        })
+        .catch(() => {
+
+        })
       }
     }
   }
 </script>
 
 <style lang="less">
-  .infinite-list-wrapper {
-    height: 300px;
-    text-align: center;
-  }
-  .infinite-list-wrapper .list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-  .infinite-list-wrapper .list-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    background: #fff6f6;
-    color: #ff8484;
-  }
-  .infinite-list-wrapper .list-item+.list-item {
-    margin-top: 10px;
-  }
 </style>
